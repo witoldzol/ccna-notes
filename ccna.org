@@ -1,0 +1,13 @@
+* Router
+** reset password
+- break during bootstrap
+- this will take you to rommon mode
+- set confreg to 0x2142
+- restart router
+- go to privilaged mode
+- copy start to running
+- update password in running config
+- reenable interfaces (no shutdown)
+- config terminal
+- change config-register ( different command than in rommon) back to 0x2102
+- copy run to start
