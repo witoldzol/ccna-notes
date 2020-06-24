@@ -108,9 +108,27 @@ Collision Detection applies only to HALF DUPLEX
 FULL DUPLEX essentially eliminates need for collision detection
 
 *** speed
-Ethernet 10Mbps
-FastEthernet 100
-GigabitEthernet 1Gps
+Ethernet 10Mbps -- Half && Full Duplex
+FastEthernet 100 -- Half && Full
+GigabitEthernet 1Gps Full duplex ONLY !
 10GigabitEthernet
 40GigabitEthernet
 
+*** frame
+: Destination MAC
+: Source MAC
+
+: Type (16 bits) 
+identifies type of message being carried, usually, which layer 3 protocol is used (ipv4/6)
+ipv4 - 0x0800
+ipv6 - 0x08DD
+ARP message - 0x0806
+
+: Data (max 1500 bytes)
+: FCS (32bits)
+frame check sequence, used for integrity test on frame
+uses CRC - Cyclical Redundancy Check
+
+puts frame bits into CRC -> gets 32 bit hash -> stores it in FCS
+when frame is received, CRC is recalculated and compared to FCS 
+if mismatch -> frame is trashed -> NO REQUEST to resend is made ( layer 2 doesn't handle those things )
