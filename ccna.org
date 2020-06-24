@@ -11,3 +11,106 @@
 - config terminal
 - change config-register ( different command than in rommon) back to 0x2102
 - copy run to start
+
+** show commands
+- show version
+: will show operating system && configuration register being used
+
+- show flash 
+: will show files stored on flash
+
+- show interface brief
+: status of interfaces (down,up,administratively down)
+
+* Switch
+** EIA/TIA-568-A/B (RJ-45 cable)
+- 8 pins
+- pin 1&2 are for transmitting Tx
+- pin 3&6 are for receiving Rx
+- rest are used mosting in Gibyte ethernet
+
+Straight through cable maps same pins to same pin outputs
+Cross over cable switches Tx with Rx at the end of the cable ( they aren't used any more, interfaces figure pins out automatically)
+(use cross over calbe when connecting two same-like devices : eg> pc to pc, switch to switch ...)
+
+Pc-Pc use cross
+Pc-Router (router is a Pc) use cros
+pc-switch - straight through cable
+switch-router - straight through cable 
+
+** Coax cable
+
+- rest are used mosting in Gibyte ethernet
+
+Straight through cable maps same pins to same pin outputs
+Cross over cable switches Tx with Rx at the end of the cable ( they aren't used any more, interfaces figure pins out automatically)
+(use cross over calbe when connecting two same-like devices : eg> pc to pc, switch to switch ...)
+
+Pc-Pc use cross
+Pc-Router (router is a Pc) use cros
+pc-switch - straight through cable
+switch-router - straight through cable 
+
+** Coax cable
+RG-6
+F-type connector (single cable sticking out, surrounded by metal nut we can use to screw it to other end)
+
+** Serial cables
+V.35
+
+DS1 cable
+(uses RJ-45 connector)
+
+** fiber optics cables
+- single mode cable - LX laser
+up to 70km
+
+- multi mode cable - SX laser
+0.5-1km
+
+you cannot combine SX & LX
+
+Connectors:
+ST
+SC
+LC 
+
+** WiFi 802.11
+
+*** 2.4 GHz
+Channel available:
+1, 6 , 11
+
+Each channel needs 22Mhz 'padding'
+
+*** 5 GHz
+36,40,44,48
+149,153,157,161
+
+52-140 - used by military, if used you need to implement DFS
+
+
+MIMO - multiple in, multiple out
+
+802.11ac - todays standard
+Uses 5GHz ONLY 
+has beamforming & MIMO
+
+** Ethernet
+*** CSMA/CD
+Carrier Sense Multiple Access Collision Detection
+
+- Collision Domain
+Group of devices that will detect a voltage spike (10V)
+
+Collision Detection applies only to HALF DUPLEX
+
+FULL DUPLEX essentially eliminates need for collision detection
+
+*** speed
+Ethernet 10Mbps
+FastEthernet 100
+GigabitEthernet 1Gps
+10GigabitEthernet
+40GigabitEthernet
+
