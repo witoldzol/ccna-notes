@@ -132,3 +132,76 @@ uses CRC - Cyclical Redundancy Check
 puts frame bits into CRC -> gets 32 bit hash -> stores it in FCS
 when frame is received, CRC is recalculated and compared to FCS 
 if mismatch -> frame is trashed -> NO REQUEST to resend is made ( layer 2 doesn't handle those things )
+
+*** topologies
+- bus
+- ring
+- star ( has HUB or switch in the center )
+
+*** MAC Address table (switch)
+Maps Ports to MAC addressess
+Each port has a chip (ASIC) - application specific integrated circuit
+ASIC reads frame header, gets MAC & inserts it in the table
+
+Switch ISOLATES traffic. 
+Example:
+There are 3 comps connected to switch, A,B,C
+A sends traffic to B
+Switch reads header, creates connection to B & forwards the message
+C DOES NOT receive the message
+
+: Flooding 
+MAC Address table timesout entries.
+When entry not found, switch will send message (flood) to ALL (except for sender ) 
+Destination will reply, and when it does, it's MAC will be mapped to a port
+
+: Broadcast message 
+Different from flooding 
+Destination address is all FFF FFF FFF
+Switch will send message to all except sender (just like in flooding)
+
+: Broadcast domain
+Group of devices that are networked together
+Devices that will get the broadcast message
+
+*** configuration
+- show mac address-table
+
+*** recover password
+- reboot
+- go into rommon mode
+- rename flash:config.text to <flash:something>
+- reboot
+- rename <flash:something> to config.text
+- copy flash:config.text to running-config
+- update password < enable secret [your-pass] >
+- copy run start
+
+done!
+
+*** upgrade IOS
+- en
+- show ver
+- show flash ( check if we have enough free space )
+- copy tftp flash
+- [ give ip of ouur tftp server ]
+- [ give name of .bin file ]
+- [ give destination name -> press enter ]
+- verify /md5 flash:/<name-of-bin-file>
+- config t
+- boot system flash:/<name-of-bin-file>
+- exit
+- copy run start
+- reload
+
+*** Broadcast storm
+Can happen when switches are connected in a loop
+'Spanning Tree' protocol prevents those (not all switches have that feature)
+
+* Domains
+- Collision domain
+Switch breaks collision domain
+
+- Broadcast domain
+Router breaks broadcast domain
+
